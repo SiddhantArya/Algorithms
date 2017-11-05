@@ -6,8 +6,13 @@
 // @author Siddhant Arya
 // @email  siddhant.arya18@gmail.com
 
-// Time Complexity: T(n) = 2T(n/2) + c
-//                : O(n . log n)
+// Time Complexity: Average Case:
+//                : T(n) = 2T(n/2) + c
+//                :      = O(n . log n)
+//                : Worst Case: The worst case occurs when the partition
+//                  process always picks greatest or smallest element as pivot.
+//                : T(n) = T(n-1) + theta(n)
+//                :      = T(n^2)
 
 // Space Complexity: O(1) <- for the two subarrays
 // Sorting In Place: Yes
