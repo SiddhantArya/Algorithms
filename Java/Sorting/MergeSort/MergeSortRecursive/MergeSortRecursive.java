@@ -1,4 +1,4 @@
-// Implement Merge Sort algorithm.
+// Implement Recursive Merge Sort algorithm.
 // Divide and Conquer algorithm.
 // It divides input array in two halves,
 // calls itself for the two halves and
@@ -17,7 +17,7 @@
 // Not good for arrays of large sizes as a lot of auxilliary space required
 import java.util.Arrays;
 
-public class MergeSort
+public class MergeSortRecursive
 {
     // Swap Method
   public void swap(int[] arr, int i, int j)
@@ -84,7 +84,7 @@ public class MergeSort
   {
     // Base case borrowed from GeekForGeeks
     int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    MergeSort obj = new MergeSort();
+    MergeSortRecursive obj = new MergeSortRecursive();
     System.out.println("Given Array:  " + Arrays.toString(arr));
     obj.sort(arr, 0, arr.length-1);
     System.out.println("Sorted array: " + Arrays.toString(arr));
