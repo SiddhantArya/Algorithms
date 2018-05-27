@@ -70,7 +70,6 @@ public class MotherVertex
       {
         DFS_Recursive(i, visited);
         v = i;
-        false;
       }
     }
 
@@ -95,7 +94,7 @@ public class MotherVertex
     gr.addEdge(6, 0);
   }
 
-  // Drover Method
+  // Driver Method
   public static void main(String[] args)
   {
     MotherVertex obj = new MotherVertex();
