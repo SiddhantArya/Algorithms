@@ -3,11 +3,18 @@ package pkg.graphs;
 public class Edge
 {
   int src, dest;
+  int weight;
 
   Edge (int s, int d)
   {
+    this (s, d, 1);
+  }
+
+  Edge (int s, int d, int wt)
+  {
     src = s;
     dest = d;
+    weight = wt;
   }
 
   public int getSource()
@@ -20,8 +27,13 @@ public class Edge
     return dest;
   }
 
+  public int getWeight()
+  {
+    return weight;
+  }
+
   public String toString()
   {
-    return ("(" + src + ", " + dest + ")");
+    return ("(" + src + ", " + dest + ", " + weight +")");
   }
 }

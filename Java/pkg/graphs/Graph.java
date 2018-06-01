@@ -1,20 +1,20 @@
-// Detect Cycle in an Undirected Graph using Union-Find Algorithm.
-
-// Union-Find Algorithm can be used to check whether an undirected graph
-// contains cycle or not.
 package pkg.graphs;
 
 import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Graph
 {
   int vertices, edges;
-  boolean isDirected;
+  boolean isDirected, isWeighted;
   // Adjeascency List for complete Graph
   ArrayList<LinkedList<Integer>> adjList;
   // Indegree and Outdegree for all vertices of Graph
   ArrayList<ArrayList<Integer>> inList, outList;
+  // Weights for all edges (MAP) of all vertices(LIST) of Graph
+  ArrayList<HashMap<Integer, Integer>> wtList;
 
   public Graph()
   {
@@ -33,11 +33,18 @@ public class Graph
 
   public Graph(int n, boolean dir)
   {
+    this(n, dir, false);
+  }
+
+  public Graph(int n, boolean dir, boolean wt)
+  {
     vertices = n;
     isDirected = dir;
+    isWeighted = wt;
     edges = 0;
     adjList = new ArrayList<LinkedList<Integer>>(n);
-    // In a Directed Graph, the max number of edges can be wither
+    wtList = new ArrayList<HashMap<Integer, Integer>>();
+    // In a Directed Graph, the max number of edges can be either
     //                      V(V-1) if there exists no self edge
     //                   or V^2    if there are self edges
     // In an Undirected Graph, the max number of edges is V(V-1)/2
@@ -57,6 +64,7 @@ public class Graph
       adjList.add(new LinkedList<Integer>());
       inList.add(new ArrayList<Integer>());
       outList.add(new ArrayList<Integer>());
+      wtList.add(new HashMap<Integer, Integer>());
     }
   }
 
@@ -72,6 +80,11 @@ public class Graph
 
   public void addEdge(int src, int dest)
   {
+    addEdge(src, dest, 1);
+  }
+
+  public void addEdge(int src, int dest, int wt)
+  {
     if (isDirected == false)
     {
       // For Adjascency Lists
@@ -82,6 +95,9 @@ public class Graph
       outList.get(src).add(dest);
       inList.get(dest).add(src);
       inList.get(src).add(dest);
+      // For Weights
+      wtList.get(src).put(dest, wt);
+      wtList.get(dest).put(src, wt);
     }
     else
     {
@@ -90,6 +106,8 @@ public class Graph
       // For Edges
       outList.get(src).add(dest);
       inList.get(dest).add(src);
+      // For Weights
+      wtList.get(src).put(dest, wt);
     }
     edges++;
   }
@@ -109,6 +127,11 @@ public class Graph
     return adjList;
   }
 
+  public ArrayList<HashMap<Integer, Integer>> getWtList()
+  {
+    return wtList;
+  }
+
   public ArrayList<Edge> getEdgeList()
   {
     ArrayList<Edge> edgesList = new ArrayList<Edge>(edges);
@@ -116,12 +139,17 @@ public class Graph
     {
       for (Integer j : adjList.get(i))
       {
+        // We are assuming weight of each edge is 1 if the edges are unweighted
+        int wt = 1;
+        if (isWeighted)
+          wt = wtList.get(i).get(j);
+
         if (isDirected)
-          edgesList.add(new Edge(i, j));
+          edgesList.add(new Edge(i, j, wt));
         else
         {
           if (i < j)
-            edgesList.add(new Edge(i, j));
+            edgesList.add(new Edge(i, j, wt));
         }
       }
     }
@@ -133,7 +161,9 @@ public class Graph
     StringBuilder res = new StringBuilder("Vertices: ");
     for (int i=0; i<vertices; i++)
       res.append(i + " ");
-    res.append("\n");
+    res.append("\nisDirected: " + isDirected);
+    res.append("\nisWeigted: " + isWeighted);
+    res.append("\nEdge Weights given in parentheses(wt:1 for undirected)\n");
     for (int i=0; i<vertices; i++)
     {
       res.append("Adjascency List of vertex " +  i + " : ");
@@ -141,7 +171,7 @@ public class Graph
       for (Integer j: adjList.get(i))
       {
         no++;
-        res.append(j);
+        res.append(j + "(" + wtList.get(i).get(j) + ")");
         if (no != adjList.get(i).size())
           res.append(", ");
       }
