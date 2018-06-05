@@ -78,6 +78,26 @@ public class Graph
     return outList;
   }
 
+  public void setAdjList(ArrayList<LinkedList<Integer>> list)
+  {
+    adjList = list;
+  }
+
+  public void setInList(ArrayList<ArrayList<Integer>> list)
+  {
+    inList = list;
+  }
+
+  public void setOutList(ArrayList<ArrayList<Integer>> list)
+  {
+    outList = list;
+  }
+
+  public void setWtList(ArrayList<HashMap<Integer, Integer>> list)
+  {
+    wtList = list;
+  }
+
   public void addEdge(int src, int dest)
   {
     addEdge(src, dest, 1);
