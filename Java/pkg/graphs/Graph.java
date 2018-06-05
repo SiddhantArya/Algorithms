@@ -68,6 +68,16 @@ public class Graph
     }
   }
 
+  public boolean getIsDirected()
+  {
+    return isDirected;
+  }
+
+  public boolean getIsWeighted()
+  {
+    return isWeighted;
+  }
+
   public ArrayList<ArrayList<Integer>> getInList()
   {
     return inList;
