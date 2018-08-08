@@ -1,0 +1,12 @@
+Tree edges are now easy to recognise;
+uv is a tree edge if parent[v] = u.
+
+For the other types of edges, we can use the (start,end) intervals to tell
+whether v is an ancestor, descendant, or distant cousin of u:
+
+Edge type of uv | Start times         | End times
+_______________________________________________________
+Tree edge       | start[u] < start[v] | end[u] > end[v]
+Back edge       | start[u] > start[v] | end[u] < end[v]
+Forward edge    | start[u] < start[v] | end[u] > end[v]
+Cross edge      | start[u] > start[v] | end[u] > end[v]
