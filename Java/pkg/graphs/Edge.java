@@ -5,12 +5,12 @@ public class Edge
   int src, dest;
   int weight;
 
-  Edge (int s, int d)
+  public Edge (int s, int d)
   {
     this (s, d, 1);
   }
 
-  Edge (int s, int d, int wt)
+  public Edge (int s, int d, int wt)
   {
     src = s;
     dest = d;

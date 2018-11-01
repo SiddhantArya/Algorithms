@@ -1,0 +1,79 @@
+-Corner Cases: Empty tree,
+               Single node tree,
+               A node with only left child and
+               A node with only right child.
+
+-Level of Tree: Level is number of nodes on path from root to the node
+               (including root and node). Level of root is 1.
+
+-Height of Tree: Height of a tree is maximum number of nodes on root to leaf
+                path. Height of a tree with single node is considered as 1.
+
+-Depth of a node in a Tree: The depth of a node is the number of edges from the
+                            node to the tree's root node.
+                            A root node will have a depth of 0.
+
+-Height of a node in a Tree: The height of a node is the number of edges on the
+                             longest path from the node to a leaf.
+                             A leaf node will have a height of 0.
+
+-Edges in Trees: Total number of edges in Tree is number of nodes minus 1,
+                 i.e., |E| = L + I – 1; where L=Leaves and I:Internal Nodes.
+
+-AVL Tree:
+
+-Red Black Tree:
+
+-Full Binary Tree: A Binary Tree is full if every node has 0 or 2 children.
+                   i.e. in which all nodes except leaves have two children.
+
+-Continuous Tree: A tree is Continuous tree if in each root to leaf path,
+                  absolute difference between keys of two adjacent nodes is 1.
+
+-Complete Binary Tree: A Binary Tree is complete Binary Tree if all levels are
+                       completely filled except possibly the last level and the
+                       last level has all keys as left as possible.
+                       Practical example of Complete Binary Tree is Binary Heap.
+
+-Perfect Binary Tree: A Binary tree is Perfect Binary Tree in which
+                      all internal nodes have two children and
+                      all leaves are at same level.
+
+-Balanced Binary Tree: A Binary Tree is balanced if height of the tree is
+                       O(Log n) where n is number of nodes.
+                       They are good in terms of performance as they provide
+                       O(log n) time for search, insert and delete.
+                       For AVL Tree: Height of left - Height right subtrees is 1
+                       For Red Black Trees: No of Black nodes on every root to
+                                            leaf paths are same and
+                                            there are no adjacent red nodes.
+
+-Expression tree: A binary tree in which each internal node corresponds to
+                  operator and each leaf node corresponds to operand.
+
+-The maximum number of nodes at level ‘l’ of a binary tree is 2^l-1. (Induction)
+
+-Maximum number of nodes in a binary tree of height ‘h’ is 2^h – 1. (Induction)
+
+-A Binary tree has maximum number of leaves (and minimum number of levels)
+when all levels are fully filled. Therefore, a Binary Tree with L leaves has at
+least <ciel( Log_2 L ) + 1> levels.
+
+-A Binary Tree with N nodes has minimum possible height or minimum number of
+levels equal to ciel( Log_2 (N+1) ).
+
+-In Binary tree where every node has 0 or 2 children, number of leaf nodes is
+always one more than nodes with two children. (Handshaking Lemma)
+
+-Applications:
+  - Heap: is a tree data structure which is implemented using arrays and used to
+    implement priority queues.
+  - B-Tree and B+ Tree : Used to implement indexing in databases.
+  - Syntax Tree: Used in Compilers.
+  - K-D Tree: A space partitioning tree used to organise points in
+    K dimensional space.
+  - Trie : Used to implement dictionaries with prefix lookup.
+  - Suffix Tree : For quick pattern searching in a fixed text.
+  - Minimum Spanning Tree:
+    - Network design
+    - Approximation algorithms for NP-hard problems. (Travelling Salesman)
