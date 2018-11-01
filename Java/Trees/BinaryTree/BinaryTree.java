@@ -546,6 +546,28 @@ public class BinaryTree<T extends Comparable<T>>
     return -1;
   }
 
+  // Prints ancestors of a given key in the tree
+  // Time Complexity: O(n)
+  public void printAncestors(TreeNode<T> node, T key)
+  {
+    if (node == null)
+      return;
+    if (node.getKey().equals(key))
+    {
+      System.out.println();
+      return;
+    }
+    TreeNode<T> target = find(key, node);
+    if (target != null)
+    {
+      System.out.print(node.getKey() + " ");
+      if (find(key, node.getLeft())!=null)
+        printAncestors(node.getLeft(), key);
+      else
+        printAncestors(node.getRight(), key);
+    }
+  }
+
 
   // Driver Method
   public static void main(String[] args)
@@ -585,6 +607,10 @@ public class BinaryTree<T extends Comparable<T>>
     obj.printKdNode(obj.getRoot(), obj.getRoot().getLeft(),1);
     System.out.println("Nodes at K(2)-Distance from root: ");
     obj.printKdNode(obj.getRoot(), obj.getRoot(), 2);
+    System.out.println("Ancestors of Node with Key 9:");
+    obj.printAncestors(obj.getRoot(), 9);
+    System.out.println("Ancestors of Node with Key 11:");
+    obj.printAncestors(obj.getRoot(), 11);
     System.out.println("\nTraversals:");
     System.out.println("Inorder  (Rec): " + obj.inorder_rec());
     System.out.println("Inorder (Iter): " + obj.inorder_iter());
