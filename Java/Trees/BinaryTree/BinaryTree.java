@@ -568,6 +568,46 @@ public class BinaryTree<T extends Comparable<T>>
     }
   }
 
+  // Traverse the upper tree in preorder fashion. For every visited node in the
+  // traversal, check if the subtree rooted with that node is identical to lower
+  // Time Complexity: O(n^2)
+  // This can be improved if we consider the property of trees that given a
+  // inorder traversal and any other traversal (Pre/Post), we can produce a tree
+  // Given this property, comparing Inorder and Preorder traversals of
+  // upper and lower trees to find "substring" would yield the solution in O(n)
+  public boolean isSubtree(TreeNode<T> upper, TreeNode<T> lower)
+  {
+    // Empty Lower Tree would always be a sybtree of the upper tree
+    if (lower == null)
+      return true;
+
+    if (upper == null)
+      return false;
+
+    // Checks is lower is a subtree of tree rooted at upper
+    if (checkSubtree(upper, lower) == true)
+      return true;
+
+    // If upper tree is different, then repeat procefure for left and right
+    return (isSubtree(upper.getLeft(), lower) ||
+            isSubtree(upper.getRight(), lower));
+  }
+
+  // Checks if the key for upper and lower are same and then proceeds to repeat
+  // the same for left and right subtrees of both.
+  public boolean checkSubtree(TreeNode<T> upper, TreeNode<T> lower)
+  {
+    if (upper == null && lower == null)
+      return true;
+
+    if (upper == null || lower == null)
+      return false;
+
+    return (upper.getKey().equals(lower.getKey()) &&
+            checkSubtree(upper.getLeft(), lower.getLeft()) &&
+            checkSubtree(upper.getRight(), lower.getRight()));
+  }
+
 
   // Driver Method
   public static void main(String[] args)
@@ -618,5 +658,16 @@ public class BinaryTree<T extends Comparable<T>>
     System.out.println("Preorder (Iter): " + obj.preorder_iter());
     System.out.println("Postorder  (Rec): " + obj.postorder_rec());
     System.out.println("Postorder (Iter): " + obj.postorder_iter());
+
+    BinaryTree<Integer> obj2 = new BinaryTree<Integer>(8);
+    obj2.add(15);
+    System.out.println("Given tree2 " + obj2);
+    System.out.println("Checking if given tree2 is a subtree of original: "
+                        + obj.isSubtree(obj.getRoot(), obj2.getRoot()));
+    obj2.add(12);
+    System.out.println("Given tree3 " + obj2);
+    System.out.println("Checking if given tree2 is a subtree of original: "
+                        + obj.isSubtree(obj.getRoot(), obj2.getRoot()));
+
   }
 }
